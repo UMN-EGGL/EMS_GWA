@@ -1,0 +1,46 @@
+Bootstrap: docker
+From: ubuntu:19.10
+
+%setup
+
+%files
+    #Elaine_2M_WP_Part1.R /home/Elaine_2M_WP_Part1.R
+    install_packages.R /tmp/install_packages.R
+
+%environment
+    # Needed for R 
+    export TZ=Europe/Minsk
+    # Set the locale so the shell wont complain
+    export LANG=C.UTF-8
+    export LC_ALL=C.UTF-8
+
+%post
+    # update and install essentials
+    apt-get update && apt-get upgrade --yes
+    apt-get install curl wget \
+        gcc \
+        build-essential \
+        libboost-all-dev libgsl0-dev \
+        unzip less --yes
+
+    # install R  
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+    echo $TZ > /etc/timezone
+    apt-get install r-cran-tidyverse --yes
+    rm /etc/localtime
+
+    # Install R packages
+    wget https://cran.r-project.org/src/contrib/Archive/synbreed/synbreed_0.12-9.tar.gz
+    wget https://cran.r-project.org/src/contrib/Archive/regress/regress_1.3-15.tar.gz
+    wget https://cran.r-project.org/src/contrib/Archive/GenABEL/GenABEL_1.8-0.tar.gz
+    wget https://cran.r-project.org/src/contrib/Archive/GenABEL.data/GenABEL.data_1.0.0.tar.gz
+    wget http://lrgpr.r-forge.r-project.org/docs/lrgpr_0.1.12.tar.gz
+    Rscript /tmp/install_packages.R
+
+
+   ## Download and install conda
+   #wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   #sh Miniconda3-latest-Linux-x86_64.sh -b 
+   ## Install snakemake 
+   #conda install -c bioconda -c conda-forge snakemake --yes
+
