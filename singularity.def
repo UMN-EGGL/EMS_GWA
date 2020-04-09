@@ -4,8 +4,7 @@ From: ubuntu:19.10
 %setup
 
 %files
-    #Elaine_2M_WP_Part1.R /home/Elaine_2M_WP_Part1.R
-    install_packages.R /tmp/install_packages.R
+    scripts/install_packages.R /tmp/install_packages.R
 
 %environment
     # Needed for R 
