@@ -1,3 +1,4 @@
+install.packages('tidyverse')
 
 # install some packages from CRAN
 install.packages(

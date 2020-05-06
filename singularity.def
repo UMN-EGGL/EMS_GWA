@@ -1,5 +1,5 @@
-Bootstrap: docker
-From: ubuntu:19.10
+Bootstrap: library
+From: ubuntu:18.04 
 
 %setup
 
@@ -14,18 +14,22 @@ From: ubuntu:19.10
     export LC_ALL=C.UTF-8
 
 %post
+    # add the universe repo
+    apt-get install software-properties-common --yes
+    add-apt-repository universe 
     # update and install essentials
     apt-get update && apt-get upgrade --yes
     apt-get install curl wget \
         gcc \
         build-essential \
         libboost-all-dev libgsl0-dev \
+        libcurl4-openssl-dev libssl-dev libxml2-dev \
         unzip less --yes
 
     # install R  
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
     echo $TZ > /etc/timezone
-    apt-get install r-cran-tidyverse --yes
+    apt-get install r-base-dev --yes
     rm /etc/localtime
 
     # Install R packages
