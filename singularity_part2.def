@@ -9,9 +9,9 @@ From: EMS_GWA_PART1.sif
     scripts/Nichol_snp_test_ems.py /opt/EMS_GWA/Nichol_snp_test_ems.py
 
 %environment
-    export PATH="$PATH:/opt/conda/bin" 
+    export PATH="/opt/conda/bin:$PATH" 
     export OPTDIR="/opt/EMS_GWA"
-    export PATH="$PATH:$OPTDIR/bin"
+    export PATH="$OPTDIR/bin:$PATH"
 
 %post
     export OPTDIR="/opt/EMS_GWA"
