@@ -40,10 +40,3 @@ From: ubuntu:18.04
     wget http://lrgpr.r-forge.r-project.org/docs/lrgpr_0.1.12.tar.gz
     Rscript /tmp/install_packages.R
 
-
-   ## Download and install conda
-   #wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-   #sh Miniconda3-latest-Linux-x86_64.sh -b 
-   ## Install snakemake 
-   #conda install -c bioconda -c conda-forge snakemake --yes
-
