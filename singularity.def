@@ -14,9 +14,16 @@ From: ubuntu:18.04
     export LC_ALL=C.UTF-8
 
 %post
+
     # add the universe repo
     apt-get install software-properties-common --yes
     add-apt-repository universe 
+    
+    # add key and r repo
+    apt-get install --yes gnupg
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+    add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+    
     # update and install essentials
     apt-get update && apt-get upgrade --yes
     apt-get install curl wget \
